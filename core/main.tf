@@ -21,7 +21,7 @@ resource "aws_iam_group" "admins" {
   name = "admins"
 }
 
-# Give standard org level groups permissions
+# Get Admin and Read Only Policies
 data "aws_iam_policy" "administrator_access" {
   name = "AdministratorAccess"
 }
@@ -30,6 +30,7 @@ data "aws_iam_policy" "readonly_access" {
   name = "ReadOnlyAccess"
 }
 
+# Attach Admin policy to admin group and Read Only to Dev group
 resource "aws_iam_group_policy_attachment" "admin_group_policy" {
   group      = aws_iam_group.admins
   policy_arn = data.aws_iam_policy.administrator_access.arn
