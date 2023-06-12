@@ -32,11 +32,11 @@ data "aws_iam_policy" "readonly_access" {
 
 # Attach Admin policy to admin group and Read Only to Dev group
 resource "aws_iam_group_policy_attachment" "admin_group_policy" {
-  group      = aws_iam_group.admins
+  group      = aws_iam_group.admins.name
   policy_arn = data.aws_iam_policy.administrator_access.arn
 }
 
 resource "aws_iam_group_policy_attachment" "developer_group_policy" {
-  group      = aws_iam_group.developers
+  group      = aws_iam_group.developers.name
   policy_arn = data.aws_iam_policy.readonly_access.arn
 }
