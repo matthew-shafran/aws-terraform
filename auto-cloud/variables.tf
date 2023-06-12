@@ -1,4 +1,5 @@
 variable "autocloud_organization_id" {
     description = "AutoCloud Organization ID"
-    type       = sensitive
+    type        = string
+    sensitive   = true
 }
