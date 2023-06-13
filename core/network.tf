@@ -5,8 +5,8 @@ resource "aws_organizations_account" "networking_account" {
 }
 
 module "dev-base-network" {
-  source  = "cn-terraform/networking/aws"
-  version = "2.0.16"
+  source  = "matthew-shafran/networking/aws"
+  version = "0.0.1"
   name_prefix    = "dev"
   single_nat     = false
   vpc_cidr_block = "10.100.0.0/16"
@@ -27,8 +27,8 @@ module "dev-base-network" {
 }
 
 module "uat-base-network" {
-  source  = "cn-terraform/networking/aws"
-  version = "2.0.16"
+  source  = "matthew-shafran/networking/aws"
+  version = "0.0.1"
   name_prefix    = "uat"
   single_nat     = false
   vpc_cidr_block = "10.150.0.0/16"
@@ -50,8 +50,8 @@ module "uat-base-network" {
 }
 
 module "prd-base-network" {
-  source  = "cn-terraform/networking/aws"
-  version = "2.0.16"
+  source  = "matthew-shafran/networking/aws"
+  version = "0.0.1"
   name_prefix    = "prd"
   single_nat     = false
   vpc_cidr_block = "10.200.0.0/16"
