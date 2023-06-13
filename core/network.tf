@@ -5,12 +5,11 @@ resource "aws_organizations_account" "networking_account" {
 }
 
 module "dev-base-network" {
-  source  = "matthew-shafran/networking/aws"
-  version = "0.0.2"
+  source  = "cn-terraform/networking/aws"
+  version = "2.0.16"
   name_prefix    = "dev"
   single_nat     = false
   vpc_cidr_block = "10.100.0.0/16"
-  parent_id      = aws_organizations_account.networking_account.id
 
   availability_zones = [
     "us-east-1a",
@@ -27,12 +26,11 @@ module "dev-base-network" {
 }
 
 module "uat-base-network" {
-  source  = "matthew-shafran/networking/aws"
-  version = "0.0.2"
+  source  = "cn-terraform/networking/aws"
+  version = "2.0.16"
   name_prefix    = "uat"
   single_nat     = false
   vpc_cidr_block = "10.150.0.0/16"
-  parent_id      = aws_organizations_account.networking_account.id
 
   availability_zones = [
     "us-east-1a",
@@ -50,12 +48,11 @@ module "uat-base-network" {
 }
 
 module "prd-base-network" {
-  source  = "matthew-shafran/networking/aws"
-  version = "0.0.2"
+  source  = "cn-terraform/networking/aws"
+  version = "2.0.16"
   name_prefix    = "prd"
   single_nat     = false
   vpc_cidr_block = "10.200.0.0/16"
-  parent_id      = aws_organizations_account.networking_account.id
 
   availability_zones = [
     "us-east-1a",
