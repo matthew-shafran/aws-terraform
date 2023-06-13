@@ -4,9 +4,20 @@ resource "aws_organizations_account" "networking_account" {
   parent_id = aws_organizations_organizational_unit.shared.id
 }
 
+provider "aws" {
+  assume_role {
+    role_arn = "arn:aws:iam::${aws_organizations_account.networking_account.id}:role/OrganizationAccountAccessRole"
+  }
+  alias = "network_account"
+}
+
 module "dev-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
+  providers = {
+    aws = aws.network_account
+  }
+
   name_prefix    = "dev"
   single_nat     = false
   vpc_cidr_block = "10.100.0.0/16"
