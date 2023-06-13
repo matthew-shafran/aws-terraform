@@ -37,7 +37,7 @@ module "dev-base-network" {
   ]
 }
 
-/*module "dev-base-network" {
+module "dev-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
   name_prefix    = "dev"
@@ -100,4 +100,4 @@ module "prd-base-network" {
     "10.200.160.0/19"
   ]
 
-}*/
+}
