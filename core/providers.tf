@@ -6,3 +6,11 @@ terraform {
     }
   }
 }
+
+provider "aws" {
+  alias      = "second_account"
+
+  assume_role {
+    role_arn = "arn:aws:iam::973337368926:role/OrganizationAccountAccessRole"
+  }
+}

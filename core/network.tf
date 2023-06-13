@@ -5,6 +5,28 @@ resource "aws_organizations_account" "networking_account" {
 }
 
 module "dev-base-network" {
+  provider = aws.second_account
+  source  = "cn-terraform/networking/aws"
+  version = "2.0.16"
+  name_prefix    = "dev"
+  single_nat     = false
+  vpc_cidr_block = "10.100.0.0/16"
+
+  availability_zones = [
+    "us-east-1a",
+    "us-east-1b"
+  ]
+  public_subnets_cidrs_per_availability_zone = [
+    "10.100.0.0/19",
+    "10.100.32.0/19"
+  ]
+  private_subnets_cidrs_per_availability_zone = [
+    "10.100.128.0/19",
+    "10.100.160.0/19"
+  ]
+}
+
+/*module "dev-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
   name_prefix    = "dev"
@@ -67,4 +89,4 @@ module "prd-base-network" {
     "10.200.160.0/19"
   ]
 
-}
+}*/
