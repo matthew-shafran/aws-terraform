@@ -12,34 +12,12 @@ provider "aws" {
   alias = "network_account"
 }
 
-module "dev-base-network" {
+module "shared-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
   providers = {
     aws = aws.network_account
   }
-
-  name_prefix    = "dev"
-  single_nat     = false
-  vpc_cidr_block = "10.100.0.0/16"
-
-  availability_zones = [
-    "us-east-1a",
-    "us-east-1b"
-  ]
-  public_subnets_cidrs_per_availability_zone = [
-    "10.100.0.0/19",
-    "10.100.32.0/19"
-  ]
-  private_subnets_cidrs_per_availability_zone = [
-    "10.100.128.0/19",
-    "10.100.160.0/19"
-  ]
-}
-
-module "shared-base-network" {
-  source  = "cn-terraform/networking/aws"
-  version = "2.0.16"
   name_prefix    = "dev"
   single_nat     = false
   vpc_cidr_block = "10.50.0.0/16"
@@ -61,6 +39,9 @@ module "shared-base-network" {
 module "dev-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
+  providers = {
+    aws = aws.network_account
+  }
   name_prefix    = "dev"
   single_nat     = false
   vpc_cidr_block = "10.100.0.0/16"
@@ -82,6 +63,9 @@ module "dev-base-network" {
 module "uat-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
+  providers = {
+    aws = aws.network_account
+  }
   name_prefix    = "uat"
   single_nat     = false
   vpc_cidr_block = "10.150.0.0/16"
@@ -104,6 +88,9 @@ module "uat-base-network" {
 module "prd-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
+  providers = {
+    aws = aws.network_account
+  }
   name_prefix    = "prd"
   single_nat     = false
   vpc_cidr_block = "10.200.0.0/16"
