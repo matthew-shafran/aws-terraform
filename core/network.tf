@@ -1,5 +1,5 @@
-resource "aws_organizations_account" "network_acc" {
-  name  = "network"
+resource "aws_organizations_account" "networking_infra_account" {
+  name  = "network_infra"
   email = "matthew.shafran+aws+networking@gmail.com"
   parent_id = aws_organizations_organizational_unit.shared.id
   role_name = "OrganizationAccountAccessRole"
@@ -7,7 +7,7 @@ resource "aws_organizations_account" "network_acc" {
 
 provider "aws" {
   assume_role {
-    role_arn = "arn:aws:iam::${aws_organizations_account.network_acc.id}:role/OrganizationAccountAccessRole"
+    role_arn = "arn:aws:iam::${aws_organizations_account.networking_infra_account.id}:role/OrganizationAccountAccessRole"
   }
   alias = "network_account"
 }
