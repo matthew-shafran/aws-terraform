@@ -5,7 +5,6 @@ resource "aws_organizations_account" "networking_account" {
 }
 
 module "dev-base-network" {
-  provider = aws.second_account
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
   name_prefix    = "dev"
