@@ -1,5 +1,5 @@
-resource "aws_organizations_account" "networking_account" {
-  name  = "networking"
+resource "aws_organizations_account" "network_account" {
+  name  = "network"
   email = "matthew.shafran+aws+networking@gmail.com"
   parent_id = aws_organizations_organizational_unit.shared.id
   role_name = "OrganizationAccountAccessRole"
