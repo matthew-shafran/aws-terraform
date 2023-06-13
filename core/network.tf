@@ -7,7 +7,7 @@ resource "aws_organizations_account" "network_account" {
 
 provider "aws" {
   assume_role {
-    role_arn = "arn:aws:iam::${aws_organizations_account.networking_infra_account.id}:role/OrganizationAccountAccessRole"
+    role_arn = "arn:aws:iam::${aws_organizations_account.network_account.id}:role/OrganizationAccountAccessRole"
   }
   alias = "network_account"
 }
