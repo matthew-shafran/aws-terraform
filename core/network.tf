@@ -139,3 +139,39 @@ module "vpc_peer_shared_dev" {
   peer_dns_resolution        = true
 
 }
+
+module "vpc_peer_shared_uat" {
+  source  = "grem11n/vpc-peering/aws"
+  version = "6.0.0"
+
+  providers = {
+    aws.this = aws.network_account
+    aws.peer = aws.network_account
+  }
+
+  this_vpc_id = module.shared-base-network.vpc_id
+  peer_vpc_id = module.uat-base-network.vpc_id
+
+  auto_accept_peering        = true
+  this_dns_resolution        = true
+  peer_dns_resolution        = true
+
+}
+
+module "vpc_peer_shared_prd" {
+  source  = "grem11n/vpc-peering/aws"
+  version = "6.0.0"
+
+  providers = {
+    aws.this = aws.network_account
+    aws.peer = aws.network_account
+  }
+
+  this_vpc_id = module.shared-base-network.vpc_id
+  peer_vpc_id = module.prd-base-network.vpc_id
+
+  auto_accept_peering        = true
+  this_dns_resolution        = true
+  peer_dns_resolution        = true
+
+}
