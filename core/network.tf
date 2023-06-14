@@ -19,7 +19,7 @@ module "shared-base-network" {
     aws = aws.network_account
   }
   name_prefix    = "dev"
-  single_nat     = false
+  single_nat     = true
   vpc_cidr_block = "10.50.0.0/16"
 
   availability_zones = [
@@ -42,7 +42,7 @@ module "dev-base-network" {
     aws = aws.network_account
   }
   name_prefix    = "dev"
-  single_nat     = false
+  single_nat     = true
   vpc_cidr_block = "10.100.0.0/16"
 
   availability_zones = [
@@ -65,7 +65,7 @@ module "uat-base-network" {
     aws = aws.network_account
   }
   name_prefix    = "uat"
-  single_nat     = false
+  single_nat     = true
   vpc_cidr_block = "10.150.0.0/16"
 
   availability_zones = [
@@ -89,7 +89,7 @@ module "prd-base-network" {
     aws = aws.network_account
   }
   name_prefix    = "prd"
-  single_nat     = false
+  single_nat     = true
   vpc_cidr_block = "10.200.0.0/16"
 
   availability_zones = [
