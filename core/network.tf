@@ -131,8 +131,8 @@ module "vpc_peer_shared_dev" {
     aws.peer = aws.network_account
   }
 
-  this_vpc_id = shared-base-network.vpc_id
-  peer_vpc_id = dev-base-network.vpc_id
+  this_vpc_id = module.shared-base-network.vpc_id
+  peer_vpc_id = module.dev-base-network.vpc_id
 
   auto_accept_peering        = true
   this_dns_resolution        = true
