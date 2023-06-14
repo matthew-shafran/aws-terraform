@@ -27,7 +27,7 @@ module "shared-base-network" {
     "us-east-1b"
   ]
   public_subnets_cidrs_per_availability_zone = [
-    "10.50.0.0/30"
+    "10.50.10.0/30"
   ]
   private_subnets_cidrs_per_availability_zone = [
     "10.50.128.0/19",
@@ -97,7 +97,7 @@ module "prd-base-network" {
     "us-east-1b"
   ]
   public_subnets_cidrs_per_availability_zone = [
-    "10.200.0.0/19"
+    "10.200.0.0/30"
   ]
   private_subnets_cidrs_per_availability_zone = [
     "10.200.128.0/19",
