@@ -12,13 +12,17 @@ provider "aws" {
   alias = "network_account"
 }
 
+resource "aws_default_vpc" "default" {
+  force_destroy = true
+}
+
 module "shared-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
   providers = {
     aws = aws.network_account
   }
-  name_prefix    = "dev"
+  name_prefix    = "shared"
   single_nat     = true
   vpc_cidr_block = "10.50.0.0/16"
 
