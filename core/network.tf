@@ -121,3 +121,21 @@ module "prd-base-network" {
     "10.200.160.0/19"
   ]
 }
+
+module "vpc_peer_shared_dev" {
+  source  = "grem11n/vpc-peering/aws"
+  version = "6.0.0"
+
+  providers = {
+    aws.this = aws.network_account
+    aws.peer = aws.network_account
+  }
+
+  this_vpc_id = shared-base-network.vpc_id
+  peer_vpc_id = dev-base-network.vpc_id
+
+  auto_accept_peering        = true
+  this_dns_resolution        = true
+  peer_dns_resolution        = true
+
+}
