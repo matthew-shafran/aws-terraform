@@ -49,7 +49,9 @@ module "dev-base-network" {
     "us-east-1a",
     "us-east-1b"
   ]
-
+  public_subnets_cidrs_per_availability_zone = [
+    
+  ]
   private_subnets_cidrs_per_availability_zone = [
     "10.100.128.0/19",
     "10.100.160.0/19"
@@ -70,7 +72,9 @@ module "uat-base-network" {
     "us-east-1a",
     "us-east-1b"
   ]
-
+  public_subnets_cidrs_per_availability_zone = [
+    
+  ]
   private_subnets_cidrs_per_availability_zone = [
     "10.150.128.0/19",
     "10.150.160.0/19"
@@ -92,7 +96,9 @@ module "prd-base-network" {
     "us-east-1a",
     "us-east-1b"
   ]
-
+  public_subnets_cidrs_per_availability_zone = [
+    
+  ]
   private_subnets_cidrs_per_availability_zone = [
     "10.200.128.0/19",
     "10.200.160.0/19"
