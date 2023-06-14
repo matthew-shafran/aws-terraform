@@ -50,7 +50,7 @@ module "dev-base-network" {
     "us-east-1b"
   ]
   public_subnets_cidrs_per_availability_zone = [
-    "10.100.0.0/28"
+    "10.100.100.0/28"
   ]
   private_subnets_cidrs_per_availability_zone = [
     "10.100.128.0/19",
