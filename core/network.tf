@@ -12,6 +12,15 @@ provider "aws" {
   alias = "network_account"
 }
 
+module "autocloud-access-role-network" {
+  source  = "autoclouddev/autocloud-access-role/aws"
+  version = "1.1.3"
+  autocloud_organization_id = var.autocloud_organization_id
+  providers = {
+    aws = aws.network_account
+  }
+}
+
 module "shared-base-network" {
   source  = "cn-terraform/networking/aws"
   version = "2.0.16"
