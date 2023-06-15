@@ -189,7 +189,7 @@ resource "aws_ram_resource_share" "dev" {
 
 resource "aws_ram_principal_association" "dev" {
   provider = aws.network_account
-  principal          = aws_organizations_organizational_unit.shared.arn
+  principal          = aws_organizations_organizational_unit.dev.arn
   resource_share_arn = aws_ram_resource_share.dev.arn
 }
 
