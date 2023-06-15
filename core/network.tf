@@ -203,6 +203,6 @@ resource "aws_ram_resource_association" "dev" {
   providers = {
     aws = aws.network_account
   }
-  resource_arn       = "arn:aws:ec2:${var.AWS_REGION}:${aws_organizations_account.network_account.id}:subnet/${each.value}"
+  resource_arn       = "arn:aws:ec2:${var.aws_standard_region}:${aws_organizations_account.network_account.id}:subnet/${each.value}"
   resource_share_arn = aws_ram_resource_share.dev.arn
 }
