@@ -22,7 +22,4 @@ provider "aws" {
   alias = "testapp_account"
 }
 
-resource "aws_default_vpc" "default" {
-  force_destroy = true
-  provider = aws.testapp_account
-}
+# Add code to delete default vpc
