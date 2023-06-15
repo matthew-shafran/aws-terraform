@@ -16,15 +16,6 @@ provider "aws" {
   alias = "testapp_account"
 }
 
-module "autocloud-access-role-network" {
-  source  = "autoclouddev/autocloud-access-role/aws"
-  version = "1.1.3"
-  autocloud_organization_id = var.autocloud_organization_id
-  providers = {
-    aws = aws.testapp_account
-  }
-}
-
 resource "aws_default_vpc" "default" {
   force_destroy = true
   provider = aws.testapp_account
