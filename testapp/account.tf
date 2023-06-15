@@ -12,12 +12,12 @@ resource "aws_organizations_account" "test-app_account" {
 
 resource "time_sleep" "wait_project_init" {
   create_duration = "60s"
-  depends_on = [ aws_organizations_account.testapp_account ]
+  depends_on = [ aws_organizations_account.test-app_account ]
 }
 
 provider "aws" {
   assume_role {
-    role_arn = "arn:aws:iam::${aws_organizations_account.testapp_account.id}:role/OrganizationAccountAccessRole"
+    role_arn = "arn:aws:iam::${aws_organizations_account.test-app_account.id}:role/OrganizationAccountAccessRole"
   }
   alias = "test-app_account"
 }
