@@ -195,7 +195,7 @@ resource "aws_ram_principal_association" "dev" {
 
 # NEED TO DO FOR LOOP HERE, going through all the private and public subnets
 resource "aws_ram_resource_association" "dev" {
-  for_each = local.dev_subnets
+  for_each = toset(local.dev_subnets)
   provider = aws.network_account
   resource_arn       = "arn:aws:ec2:${var.aws_standard_region}:${aws_organizations_account.network_account.id}:subnet/${each.value}"
   resource_share_arn = aws_ram_resource_share.dev.arn
