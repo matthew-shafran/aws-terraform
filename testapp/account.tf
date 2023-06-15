@@ -9,7 +9,7 @@ resource "random_string" "this" {
 
 resource "aws_organizations_account" "test-app_account" {
   name  = "${local.app_code}-${var.environment_code}"
-  email = "matthew.shafran+aws+${local.app_code}+${var.environment_code}+${random_string.this}@gmail.com"
+  email = "matthew.shafran+aws+${local.app_code}+${var.environment_code}+${random_string.this.result}@gmail.com"
   close_on_deletion = true
   parent_id = var.ou_id
   role_name = "OrganizationAccountAccessRole"
