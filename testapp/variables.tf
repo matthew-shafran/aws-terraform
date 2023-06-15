@@ -14,8 +14,3 @@ variable "ou_id" {
     description = "ID of the OU to create the account in"
     type        = string
 }
-
-variable "autocloud_organization_id" {
-    description = "ID of the Auto Cloud instance to connect to"
-    type        = string
-}
