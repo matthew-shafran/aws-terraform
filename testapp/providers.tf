@@ -16,6 +16,6 @@ terraform {
 provider "awsutils" {
   region = var.aws_standard_region
   assume_role {
-    role_arn = "arn:aws:iam::${aws_organizations_account.network_account.id}:role/OrganizationAccountAccessRole"
+    role_arn = "arn:aws:iam::${aws_organizations_account.test-app_account.id}:role/OrganizationAccountAccessRole"
   }
 }
