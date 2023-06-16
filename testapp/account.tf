@@ -28,7 +28,7 @@ provider "aws" {
 }
 
 # Add code to delete default vpc
-resource "time_sleep" "wait_project_init" {
+resource "time_sleep" "wait_project_init_2" {
   create_duration = "60s"
   depends_on = [ aws_organizations_account.test-app_account ]
 }
