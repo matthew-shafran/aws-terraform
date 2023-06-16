@@ -27,4 +27,5 @@ provider "aws" {
   alias = "test-app_account"
 }
 
-# Add code to delete default vpc
+resource "awsutils_default_vpc_deletion" "this" {
+}
