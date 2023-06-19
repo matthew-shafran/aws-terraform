@@ -9,7 +9,7 @@ env:
   TF_CLOUD_ORGANIZATION: "${{ secrets.TF_ORG_ID }}"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "abc-dev"
-  CONFIG_DIRECTORY: "./testapp"
+  CONFIG_DIRECTORY: "../../testapp"
 
 jobs:
   terraform:
