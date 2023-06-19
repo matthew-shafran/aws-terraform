@@ -5,7 +5,7 @@ module "bastion" {
         aws = aws.network_account
     }
 
-    bucket_name = "mshafran_bastion_logs"
+    bucket_name = "mshafran-bastion-logs"
     region = "us-east-1"
     vpc_id = module.shared-base-network.vpc_id
     bastion_host_key_pair = "bastion_host_key"
