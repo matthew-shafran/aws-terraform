@@ -51,7 +51,7 @@ resource "aws_security_group" "allow_ssh_icmp" {
     provider = aws.network_account
     name        = "allow_ssh_icmp"
     description = "Allow SSH and ALL ICMP IPV4 inbound traffic"
-    vpc_id      = var.vpc_id
+    vpc_id      = module.shared-base-network.vpc_id
 
     ingress {
         description = "SSH from VPC"
