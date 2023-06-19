@@ -38,7 +38,7 @@ resource "aws_instance" "bastion" {
     ami           = data.aws_ami.amazon-linux.id
     instance_type = "t2.micro"
     key_name      = aws_secretsmanager_secret.mshafran_ssh_key.name
-    subnet_id     = toset(module.shared-base-network.public_subnets_ids)[0]
+    subnet_id     = module.shared-base-network.public_subnets_ids[0]
 
     tags = {
         Name = "bastion_host"
