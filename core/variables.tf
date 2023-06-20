@@ -1,5 +1,4 @@
-variable "autocloud_organization_id" {
-    description = "AutoCloud Organization ID"
+variable "aws_standard_region" {
     type        = string
-    sensitive   = true
+    description = "Default region for resources"
 }

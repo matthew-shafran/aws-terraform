@@ -12,19 +12,12 @@ provider "aws" {
   alias = "network_account"
 }
 
-module "autocloud-access-role-network" {
-  source  = "autoclouddev/autocloud-access-role/aws"
-  version = "1.1.3"
-  autocloud_organization_id = var.autocloud_organization_id
-  providers = {
-    aws = aws.network_account
-  }
-}
-
 resource "aws_default_vpc" "default" {
   force_destroy = true
   provider = aws.network_account
 }
+
+### Create Shared, Dev, UAT, and Prod networks
 
 module "shared-base-network" {
   source  = "cn-terraform/networking/aws"
@@ -174,4 +167,36 @@ module "vpc_peer_shared_prd" {
   this_dns_resolution        = true
   peer_dns_resolution        = true
 
+}
+
+locals {
+  shared_subnets = concat(module.shared-base-network.public_subnets_ids, module.shared-base-network.private_subnets_ids)
+  dev_subnets    = concat(module.dev-base-network.public_subnets_ids, module.dev-base-network.private_subnets_ids)
+  uat_subnets    = concat(module.uat-base-network.public_subnets_ids, module.uat-base-network.private_subnets_ids)
+  prd_subnets    = concat(module.prd-base-network.public_subnets_ids, module.prd-base-network.private_subnets_ids)
+}
+
+### Create share for networks to their respective OUs
+resource "aws_ram_resource_share" "dev" {
+  provider = aws.network_account
+  name                      = "dev-subnet-share"
+  allow_external_principals = false
+
+  tags = {
+    Environment = "Dev"
+  }
+}
+
+resource "aws_ram_principal_association" "dev" {
+  provider = aws.network_account
+  principal          = aws_organizations_organizational_unit.dev.arn
+  resource_share_arn = aws_ram_resource_share.dev.arn
+}
+
+# NEED TO DO FOR LOOP HERE, going through all the private and public subnets
+resource "aws_ram_resource_association" "dev" {
+  for_each = toset(local.dev_subnets)
+  provider = aws.network_account
+  resource_arn       = "arn:aws:ec2:${var.aws_standard_region}:${aws_organizations_account.network_account.id}:subnet/${each.value}"
+  resource_share_arn = aws_ram_resource_share.dev.arn
 }
